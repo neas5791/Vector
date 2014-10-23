@@ -16,14 +16,14 @@ public class Vector {
 		this.z = z;
 	}
 	
-	/**
-	 * This is sometimes called the parallelogram law or triangle law.
-	 * @param v a vector to 
-	 * @return the vector resultant
-	 */
-	public Vector add(Vector v){
-		return Vector.add(this, v);
-	}
+//	/**
+//	 * This is sometimes called the parallelogram law or triangle law.
+//	 * @param v a vector to 
+//	 * @return the vector resultant
+//	 */
+//	public Vector add(Vector v){
+//		return Vector.add(this, v);
+//	}
 
 	/**
 	 * Static method to calculate the addition of two vectors, 
@@ -36,15 +36,15 @@ public class Vector {
 		return new Vector(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
 	}
 	
-	/**
-	 * Calculate the difference between to vectors, the resultant vector
-	 * closes the triangle
-	 * @param v a vector
-	 * @return the resultant vector
-	 */
-	public Vector minus(Vector v){
-		return Vector.minus(this, v);
-	}
+//	/**
+//	 * Calculate the difference between to vectors, the resultant vector
+//	 * closes the triangle
+//	 * @param v a vector
+//	 * @return the resultant vector
+//	 */
+//	public Vector minus(Vector v){
+//		return Vector.minus(this, v);
+//	}
 	
 	/**
 	 * Calculate the difference between to vectors, 
@@ -62,21 +62,21 @@ public class Vector {
 	 * @param scalar the value to alter the vector by
 	 * @return the scaled vector
 	 */
-	public Vector scalarMultiplication(double scalar){
-		return new Vector(scalar * this.x, scalar * this.y, scalar * this.z);
+	public static Vector scalarMultiplication(double scalar, Vector v){
+		return new Vector(scalar * v.x, scalar * v.y, scalar * v.z);
 	}
 	
-	/**
-	 * Sometimes the dot product is called the scalar product.  
-	 * The dot product is also an example of an inner product and 
-	 * so on occasion you may hear it called an inner product.
-	 * a.b = <a1,a2,a3>.<b1,b2,b3> = a1*b1 + a2*b2 + a3*b3
-	 * @param v a vector
-	 * @return the dot product of two vectors
-	 */
-	public double dotProduct(Vector v){
-		return Vector.dotProduct(this, v);
-	}
+//	/**
+//	 * Sometimes the dot product is called the scalar product.  
+//	 * The dot product is also an example of an inner product and 
+//	 * so on occasion you may hear it called an inner product.
+//	 * a.b = <a1,a2,a3>.<b1,b2,b3> = a1*b1 + a2*b2 + a3*b3
+//	 * @param v a vector
+//	 * @return the dot product of two vectors
+//	 */
+//	public double dotProduct(Vector v){
+//		return Vector.dotProduct(this, v);
+//	}
 	
 	/**
 	 * Sometimes the dot product is called the scalar product.  
@@ -94,12 +94,12 @@ public class Vector {
 	 * @param v the other vector which  
 	 * @return
 	 */
-	public double angleDegree(Vector v){
-		return angleRadian(v) * (180/Math.PI);
+	public double includedAngle(Vector v1, Vector v2){
+		return includedAngleRadian(v1,v2) * (180/Math.PI);
 	}
 	
-	public double angleRadian(Vector v){
-		return Math.acos(dotProduct(v)/(this.magnitude()*v.magnitude()));
+	private double includedAngleRadian(Vector v1, Vector v2){
+		return Math.acos(Vector.dotProduct(v1, v2)/(v1.magnitude()*v2.magnitude()));
 	}
 	
 	/**
@@ -119,15 +119,15 @@ public class Vector {
 		return new Vector(this.x/this.magnitude(),this.y/this.magnitude(), this.z/this.magnitude());
 	}
 
-	/**
-	 * Calculates the cross product between this and another Vector.
-	 * The result is a vector normal to the plane formed by the two vectors
-	 * @param v Vector 
-	 * @return
-	 */
-	public Vector crossProduct(Vector v){
-		return Vector.crossProduct(this, v);
-	}
+//	/**
+//	 * Calculates the cross product between this and another Vector.
+//	 * The result is a vector normal to the plane formed by the two vectors
+//	 * @param v Vector 
+//	 * @return
+//	 */
+//	public Vector crossProduct(Vector v){
+//		return Vector.crossProduct(this, v);
+//	}
 	
 	/**
 	 * a x b = < a2*b3-a3*b1, a3*b1-a1*b3, a1*b2-a2*b1 >
@@ -161,64 +161,84 @@ public class Vector {
 	public double getY(){return y;}
 	public double getZ(){return z;}
 	
-	public void setX(double x){
-		this.x = x;
-	}
-	public void setY(double y){
-		this.y = y;
-	}
-	public void setZ(double z){
-		this.z = z;
-	}
+	public void setX(double x){ this.x = x; }
+	public void setY(double y){ this.y = y; }
+	public void setZ(double z){ this.z = z; }
 	
 	public String toString(){
 		return String.format("< %5.2f,  %5.2f, %5.2f >",x, y, z);
 	}
 	
 	public static void main(String[] args){
-//		Vector v1 = new Vector(-6,8,0);
-//		Vector v2 = new Vector(5,12,0);
-//		
-//		System.out.println(v1.dotProduct(v2));
-//		System.out.println(v1.angleDegree(v2) + " deg");
-//		
-//		System.out.print(v1 + " + " + v2 + " = ");
-//		System.out.println(v1.add(v2));
-//
-//		
-//		System.out.print(v1 +" - " + v2 + " = ");
-//		System.out.println(v1.minus(v2));
-//
-//		
-//		v1 = new Vector(2,1,-1);
-//		v2 = new Vector(-3,4,1);
-//		
-//		System.out.println(Vector.crossProduct(v1, v2));
-//		System.out.println(Vector.crossProduct(v2, v1));
 		
-		Vector v1 = new Vector(1,0,0);
-		Vector v2 = new Vector(1,1,1);
-		Vector v3 = new Vector(2,-1,3);
+		Vector v1 = new Vector(1, 4, -7);
+		Vector v2 = new Vector(2, -1, 4);
+		Vector v3 = new Vector(0, -9, 18);
+
 		
-		System.out.println("PQ = " + Vector.minus(v1, v2));
-		System.out.println("PR = " + Vector.minus(v1, v3));
-		System.out.println(Vector.crossProduct(Vector.minus(v1, v2),Vector.minus(v1, v3)));
-		System.out.println(Vector.crossProduct(Vector.minus(v1, v2),Vector.minus(v1, v3)).unitVector());
+		double volume = Vector.dotProduct(v1, Vector.crossProduct(v2, v3));
 		
-		System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.minus(v1, v2),Vector.minus(v1, v3)).unitVector(), v1));
-		System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.minus(v1, v2),Vector.minus(v1, v3)).unitVector(), v2));
-		System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.minus(v1, v2),Vector.minus(v1, v3)).unitVector(), v3));
+		if (volume == 0)
+			System.out.println("These points are on the same plane!");
+		else
+			System.out.println("We got volume!");
 		
-		System.out.println("PQ = " + Vector.add(v1, v2));
-		System.out.println("PR = " + Vector.add(v1, v3));
-		System.out.println(Vector.crossProduct(Vector.add(v1, v2),Vector.add(v1, v3)));
-		System.out.println(Vector.crossProduct(Vector.add(v1, v2),Vector.add(v1, v3)).unitVector());
-		
-		System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.add(v1, v2),Vector.add(v1, v3)).unitVector(), v1));
-		System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.add(v1, v2),Vector.add(v1, v3)).unitVector(), v2));
-		System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.add(v1, v2),Vector.add(v1, v3)).unitVector(), v3));
-		
-		
-//		System.out.println(Vector.crossProduct(Vector.add(v1, v2),Vector.minus(v3, v2)));
 	}
 }
+
+//**********************************************************************************
+//this all worked beaut 
+//Vector v1 = new Vector(1,0,0);
+//Vector v2 = new Vector(1,1,1);
+//Vector v3 = new Vector(2,-1,3);
+//
+//Vector v4m = Vector.crossProduct(Vector.minus(v1, v2),Vector.minus(v1, v3));
+//
+//// PQ and PR are vectors on the plane formed by the three points v1, v2, v3
+//System.out.println("PQ = " + Vector.minus(v1, v2));
+//System.out.println("PR = " + Vector.minus(v1, v3));
+//// v4m is the plane orthogonal to the plane formed by v1, v2, v3 
+//System.out.println(v4m);
+//*********************************************************************************
+
+
+
+
+
+
+
+
+
+//Vector v1 = new Vector(-6,8,0);
+//Vector v2 = new Vector(5,12,0);
+//
+//System.out.println(v1.dotProduct(v2));
+//System.out.println(v1.angleDegree(v2) + " deg");
+//
+//System.out.print(v1 + " + " + v2 + " = ");
+//System.out.println(v1.add(v2));
+//
+//
+//System.out.print(v1 +" - " + v2 + " = ");
+//System.out.println(v1.minus(v2));
+//
+//
+//v1 = new Vector(2,1,-1);
+//v2 = new Vector(-3,4,1);
+//
+//System.out.println(Vector.crossProduct(v1, v2));
+//System.out.println(Vector.crossProduct(v2, v1));
+//System.out.println(Vector.crossProduct(Vector.minus(v1, v2),Vector.minus(v1, v3)));
+//System.out.println(Vector.crossProduct(Vector.minus(v1, v2),Vector.minus(v1, v3)).unitVector());
+//System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.minus(v1, v2),Vector.minus(v1, v3)).unitVector(), v1));
+//System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.minus(v1, v2),Vector.minus(v1, v3)).unitVector(), v2));
+//System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.minus(v1, v2),Vector.minus(v1, v3)).unitVector(), v3));
+//System.out.println("PQ = " + Vector.add(v1, v2));
+//System.out.println("PR = " + Vector.add(v1, v3));
+//System.out.println(Vector.crossProduct(Vector.add(v1, v2),Vector.add(v1, v3)));
+//System.out.println(Vector.crossProduct(Vector.add(v1, v2),Vector.add(v1, v3)).unitVector());
+//System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.add(v1, v2),Vector.add(v1, v3)).unitVector(), v1));
+//System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.add(v1, v2),Vector.add(v1, v3)).unitVector(), v2));
+//System.out.println(Vector.dotProduct(Vector.crossProduct(Vector.add(v1, v2),Vector.add(v1, v3)).unitVector(), v3));
+//System.out.println(v4a);
+//System.out.println(Vector.crossProduct(v4m, v4m));
