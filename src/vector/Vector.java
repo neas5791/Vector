@@ -134,22 +134,6 @@ public class Vector {
 	public void setY(double y){ this.y = y; }
 	public void setZ(double z){ this.z = z; }
 	
-	public static void main(String[] args){
-		
-		Vector v1 = new Vector(1, 4, -7);
-		Vector v2 = new Vector(2, -1, 4);
-		Vector v3 = new Vector(0, -9, 18);
-
-		
-		double volume = Vector.dotProduct(v1, Vector.crossProduct(v2, v3));
-		
-		if (volume == 0)
-			System.out.println("These points are on the same plane!");
-		else
-			System.out.println("We got volume!");
-		
-	}
-
 	private double x = 0;
 	private double y = 0;
 	private double z = 0;
