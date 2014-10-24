@@ -171,12 +171,12 @@ public class CopyOfVector {
 	
 	public static void main(String[] args){
 		
-		CopyOfVector v1 = new CopyOfVector(1, 4, -7);
-		CopyOfVector v2 = new CopyOfVector(2, -1, 4);
-		CopyOfVector v3 = new CopyOfVector(0, -9, 18);
+		Vector v1 = new Vector(1, 4, -7);
+		Vector v2 = new Vector(2, -1, 4);
+		Vector v3 = new Vector(0, -9, 18);
 
 		
-		double volume = CopyOfVector.dotProduct(v1, CopyOfVector.crossProduct(v2, v3));
+		double volume = Vector.dotProduct(v1, Vector.crossProduct(v2, v3));
 		
 		if (volume == 0)
 			System.out.println("These points are on the same plane!");
